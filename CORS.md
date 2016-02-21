@@ -52,10 +52,11 @@ After committing the configuration changes, verify response that headers to from
 
 ### 2.2 Amazon web servers
 
-For step by step instructions regarding how to enable CORS on Amazon S3, see the [Amazon documentation] (http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html).
+Note: If the bucket used to store the video files is not the same bucket used to store the page that loads the video, then the following must be configured for all related buckets.
 
-You can add up to 100 rules to the configuration. You add the XML document as the cors subresource to the bucket.
-
+1. From your Amazon AWS console go to S3.
+2. Select the relevent bucket and show it's properties.
+3. Click 'Edit CORS Configuration' and paste the XML below:
 ```
 <CORSConfiguration>
  <CORSRule>
@@ -72,8 +73,7 @@ You can add up to 100 rules to the configuration. You add the XML document as th
   <ExposeHeader>Content-Range</ExposeHeader>
   <ExposeHeader>Date</ExposeHeader>
   <ExposeHeader>Etag</ExposeHeader>
-
-
+  
   <MaxAgeSeconds>600</MaxAgeSeconds>
 
  </CORSRule>
@@ -81,6 +81,8 @@ You can add up to 100 rules to the configuration. You add the XML document as th
 ```
 
 After committing the configuration changes, verify response that headers to from this server(s) include required headers, as described above.
+
+If you require a more in-depth guide to customizing your S3 bucket configuration, please see [Amazon documentation] (http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html).
 
 ### 2.3. MaxCDN
 
